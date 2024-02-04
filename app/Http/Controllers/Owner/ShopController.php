@@ -69,9 +69,9 @@ class ShopController extends Controller
         $shop->save();
 
         return redirect()
-            ->route('owner.shops.index')
+            ->route('owner.images.index')
             ->with([
-                'message', '店舗情報を更新しました。',
+                'message', '画像登録を実施しました。',
                 'status' => 'info'
             ]);
     }
