@@ -170,11 +170,11 @@ class ProductController extends Controller
                     $product->is_selling = $request->is_sellin;
                     $product->save();
 
-                    if ($request->type === '1') {
+                    if ($request->type === \Constant::PRODUCT_LIST['add']) {
                         $newQuantity = $request->Quantity;
                     }
 
-                    if ($request->type === '2') {
+                    if ($request->type === \Constant::PRODUCT_LIST['reduce']) {
                         $newQuantity = $request->Quantity * -1;
                     }
                     Stock::create([
