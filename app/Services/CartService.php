@@ -13,10 +13,13 @@ class CartService
 
     foreach ($items as $item) {
       $p = Product::ﬁndOrFail($item->product_id);
-      $owner = $p->shop->owner->select('name', 'email')->ﬁrst()->toArray(); //オーナー情報  
+      $owner = $p->shop->owner; //オーナー情報  
       $values = array_values($owner); //連想配列の値を取得
       $keys = ['ownerName', 'email'];
-      $ownerInfo = array_combine($keys, $values); // オーナー情報のキーを変更
+      $ownerInfo = [
+        'ownerName' => $owner->name,
+        'email' => $owner->email
+      ]; // オーナー情報のキーを変更
 
       $product = Product::where('id', $item->product_id)
         ->select('id', 'name', 'price')->get()->toArray(); // 商品情報の配列
